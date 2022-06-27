@@ -1,0 +1,58 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>MarkList Web Application</display-name>
+  <servlet>
+    <servlet-name>Main</servlet-name>
+    <servlet-class>MainServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>OverallAvgMark</servlet-name>
+    <servlet-class>OverallAvgMark</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ToperInEachSubject</servlet-name>
+    <servlet-class>ToperInEachSubject</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>RankList</servlet-name>
+    <servlet-class>RankList</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>StaffLogin</servlet-name>
+    <servlet-class>StaffLogin</servlet-class>
+ </servlet>
+ <servlet>
+  <servlet-name>StudentLogin</servlet-name>
+  <servlet-class>StudentLogin</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>Main</servlet-name>
+    <url-pattern>/main</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+  <servlet-name>OverallAvgMark</servlet-name>
+  <url-pattern>/avg</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+  <servlet-name>ToperInEachSubject</servlet-name>
+  <url-pattern>/highscorer</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+  <servlet-name>RankList</servlet-name>
+  <url-pattern>/ranklist</url-pattern>
+</servlet-mapping>
+ <servlet-mapping>
+    <servlet-name>StaffLogin</servlet-name>
+    <url-pattern>/STAFF</url-pattern>
+ </servlet-mapping>
+<servlet-mapping>
+  <servlet-name>StudentLogin</servlet-name>
+  <url-pattern>/STUDENT</url-pattern>
+</servlet-mapping>
+<welcome-file-list>
+  <welcome-file>index.jsp</welcome-file>
+</welcome-file-list>
+</web-app>
