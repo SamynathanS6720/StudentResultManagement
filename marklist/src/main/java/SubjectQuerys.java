@@ -175,30 +175,29 @@ public class SubjectQuerys extends CommenOperations {
 
                     String selectQuery ; 
                     
-                    selectQuery = "SELECT  marks.subject_Id , subject.subject_name ,  marks.student_id, student.student_name , marks.marks " +
-                                  "FROM subject.marks " + 
-                                  "JOIN subject.subject ON marks.subject_id = subject.subject_id " +
-                                  "JOIN student.student ON marks.student_id = student.student_id " +
-                                  "WHERE ( marks.subject_Id , marks.marks ) = ANY ( " +
-                                        "select  marks.subject_id,  max(marks) AS \"toper\" "+
-                                        "FROM subject.marks " +  
-                                        "group by marks.subject_id ) "+
-                                        "order by subject.subject_id; " ;
+                    selectQuery =   "SELECT  marks.subject_Id , subject.subject_name ,  marks.student_id, student.student_name , marks.marks " +
+                                    "FROM subject.marks " + 
+                                    "JOIN subject.subject ON marks.subject_id = subject.subject_id " +
+                                    "JOIN student.student ON marks.student_id = student.student_id " +
+                                    "WHERE (marks.subject_id ,marks.marks) IN " +
+                                    "(SELECT marks.subject_id, MAX(marks) " +
+                                    "FROM subject.marks "+
+                                    "GROUP BY marks.subject_id);" ;
 
                     super.pstmt = super.dbAccess.getConnectedPreparedStatement( selectQuery ) ;
 
                     this.result = super.pstmt.executeQuery() ;
 
                     while( this.result.next() ) {
-                        int studentIDIndex = 1 ,
-                            studentnameIndex = 2 ,
-                            subIDIndex = 3 ,
-                            subjectNameIndex = 4 ,
+                        int subIDIndex = 1 ,
+                            subjectNameIndex  = 2 ,
+                            studentIDIndex  = 3 ,
+                            studentnameIndex = 4 ,
                             MarkIndex = 5 ;
-                        topers.add( String.valueOf( result.getInt( studentIDIndex ) ) );
-                        topers.add( result.getString( studentnameIndex ) );
                         topers.add( String.valueOf( result.getInt( subIDIndex ) ) );
-                        topers.add( result.getString( subjectNameIndex )  );
+                        topers.add( result.getString( subjectNameIndex ) );
+                        topers.add( String.valueOf( result.getInt( studentIDIndex ) ) );
+                        topers.add( result.getString( studentnameIndex )  );
                         topers.add(String.valueOf( result.getDouble( MarkIndex ) ) ) ; 
                     }
                     
@@ -220,28 +219,31 @@ public class SubjectQuerys extends CommenOperations {
 
         if( super.dbAccess.openConnection() ){
             try{ 
+                String selectQuery ;
+                
+                selectQuery =   "SELECT  Subject.subject_id, subject.Subject_name , count( marks.marks ) FROM subject.marks " +
+                                "INNER JOIN subject.subject ON marks.subject_id = subject.subject_id " +
+                                "JOIN ( 	SELECT marks.subject_id, avg( marks.marks) AS \"avg_mark\" " +
+                                        "FROM subject.marks " +
+                                        "group by marks.subject_id " +
+                                    ") avgtable " +
+                                "ON marks.subject_id = avgtable.subject_id " +
+                                "WHERE marks.marks > avgtable.avg_mark " +
+                                "GROUP BY subject.subject_id " +
+                                "order by subject.subject_id ; " ;
+                                
+            super.pstmt = super.dbAccess.getConnectedPreparedStatement( selectQuery ) ;
 
-                    String selectQuery ; 
-                    
-                    selectQuery =   "SELECT subject.subject_id, subject.subject_name , count( marks.marks ) FROM subject.marks " +
-                                    "INNER JOIN subject.subject ON marks.subject_id = subject.subject_id " +
-                                    "WHERE marks.marks > (SELECT AVG( marks.marks) " +
-                                    "FROM subject.marks) " +
-                                    "group by subject.subject_id " +
-                                    "order by subject.subject_id; " ;
-                                        
-                    super.pstmt = super.dbAccess.getConnectedPreparedStatement( selectQuery ) ;
+            this.result = super.pstmt.executeQuery() ;
 
-                    this.result = super.pstmt.executeQuery() ;
-
-                    while( this.result.next() ) {
-                        int subIDIndex = 1 ,
-                            subjectNameIndex = 2 ,
-                            MarkIndex = 3 ;
-                        marks.add( String.valueOf( result.getInt( subIDIndex ) ) );
-                        marks.add( result.getString( subjectNameIndex )  );
-                        marks.add(String.valueOf( result.getDouble( MarkIndex ) ) ) ; 
-                    }
+            while( this.result.next() ) {
+                int subIDIndex = 1 ,
+                    subjectNameIndex = 2 ,
+                    countIndex = 3 ;
+                marks.add( String.valueOf( result.getInt( subIDIndex ) ) );
+                marks.add( result.getString( subjectNameIndex )  );
+                marks.add(String.valueOf( result.getDouble( countIndex ) ) ) ; 
+            }
 
                     return marks ;
 
@@ -261,29 +263,35 @@ public class SubjectQuerys extends CommenOperations {
         if( super.dbAccess.openConnection() ){
             try{ 
 
-                    String selectQuery ; 
+                String selectQuery ; 
                     
-                    selectQuery =   "SELECT subject.subject_name, student.student_id , student.student_name, marks.marks " +
-                                    "from student.student inner join subject.marks on marks.student_id = student.student_id " +
-                                    "INNER JOIN subject.subject on marks.subject_id = subject.subject_id " +
-                                    "WHERE marks > ( SELECT AVG(marks) FROM subject.marks ) " +
-                                    "ORDER BY subject.subject_id;" ;
+                selectQuery = "SELECT  marks.subject_Id , subject.subject_name ,  marks.student_id, student.student_name , marks.marks " +
+                              "FROM subject.marks " + 
+                              "JOIN subject.subject ON marks.subject_id = subject.subject_id " +
+                              "JOIN student.student ON marks.student_id = student.student_id " +
+                              "WHERE ( marks.subject_Id , marks.marks ) = ANY ( " +
+                                    "select  marks.subject_id,  max(marks) AS \"toper\" "+
+                                    "FROM subject.marks " +  
+                                    "group by marks.subject_id ) "+
+                                    "order by subject.subject_id; " ;
 
-                    super.pstmt = super.dbAccess.getConnectedPreparedStatement( selectQuery ) ;
+                super.pstmt = super.dbAccess.getConnectedPreparedStatement( selectQuery ) ;
 
-                    this.result = super.pstmt.executeQuery() ;
+                this.result = super.pstmt.executeQuery() ;
 
-                    while( this.result.next() ) {
-                        int subjectNameIndex = 1 ,
-                            studentIDIndex  = 2 ,
-                            studentnameIndex = 3 ,
-                            marksIndex = 4 ;
-                        topers.add(  result.getString( subjectNameIndex )  );
-                        topers.add( String.valueOf( result.getInt( studentIDIndex ) ) );
-                        topers.add( result.getString( studentnameIndex )  );
-                        topers.add(String.valueOf( result.getDouble( marksIndex ) ) ) ; 
-                    }
-                    
+                while( this.result.next() ) {
+                    int subIDIndex = 1 ,
+                        subjectNameIndex  = 2 ,
+                        studentIDIndex  = 3 ,
+                        studentnameIndex = 4 ,
+                        MarkIndex = 5 ;
+                    topers.add( String.valueOf( result.getInt( subIDIndex ) ) );
+                    topers.add( result.getString( subjectNameIndex ) );
+                    topers.add( String.valueOf( result.getInt( studentIDIndex  ) ) );
+                    topers.add( result.getString( studentnameIndex  )  );
+                    topers.add(String.valueOf( result.getDouble( MarkIndex ) ) ) ; 
+                }
+                
                     return topers ;
 
             }catch( SQLException ex ){

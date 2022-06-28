@@ -21,6 +21,14 @@
     <servlet-class>RankList</servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>AboveAverageList</servlet-name>
+    <servlet-class>AboveAverageList</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AboveAvgCount</servlet-name>
+    <servlet-class>AboveAvgCount</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>StaffLogin</servlet-name>
     <servlet-class>StaffLogin</servlet-class>
  </servlet>
@@ -43,6 +51,14 @@
 <servlet-mapping>
   <servlet-name>RankList</servlet-name>
   <url-pattern>/ranklist</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+  <servlet-name>AboveAverageList</servlet-name>
+  <url-pattern>/aboveAverage</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+  <servlet-name>AboveAvgCount</servlet-name>
+  <url-pattern>/aboveavgcount</url-pattern>
 </servlet-mapping>
  <servlet-mapping>
     <servlet-name>StaffLogin</servlet-name>
