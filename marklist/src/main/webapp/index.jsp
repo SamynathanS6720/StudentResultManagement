@@ -85,9 +85,9 @@ button {
         background-color: rgb(230, 237, 240);
         border-radius: 40px; 
         position: absolute;
-        left: 20%;
+        left: 40%;
     }   
-    .container2 { 
+    /* .container2 { 
         opacity: 0.7;
         width: 150px ;   
         margin: 0px 10px;  
@@ -96,7 +96,7 @@ button {
         border-radius: 40px; 
         position: absolute ;
         left: 50%;
-    }  
+    }   */
 </style>   
 </head>    
 <body>   
@@ -118,7 +118,7 @@ button {
              <!-- <a href="#"> Forgot password? </a>    -->
         </div>  
       </div>
-        <div class = "column">
+        <!-- <div class = "column">
           <div class="container2">   
             <h2>Student Login</h2>
               <label>Username  </label>   
@@ -126,10 +126,10 @@ button {
               <label>Password  </label>   
               <input type="password" placeholder="Enter Password" name="password" >  
               <button type="submit" name="usertype" value="STUDENT">Login</button>   
-              <!-- <input type="checkbox" checked="checked"> Remember me   
+              <input type="checkbox" checked="checked"> Remember me   
               <button type="button" class="cancelbtn"> Cancel</button> <br>   -->
               <!-- <a href="#"> Forgot password? </a>    -->
-          </div> 
+          </div>  -->
         </div>
       </div>
     </form>     

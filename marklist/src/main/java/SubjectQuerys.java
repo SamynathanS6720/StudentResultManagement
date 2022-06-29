@@ -182,7 +182,8 @@ public class SubjectQuerys extends CommenOperations {
                                     "WHERE (marks.subject_id ,marks.marks) IN " +
                                     "(SELECT marks.subject_id, MAX(marks) " +
                                     "FROM subject.marks "+
-                                    "GROUP BY marks.subject_id);" ;
+                                    "GROUP BY marks.subject_id)"+
+                                    "order by subject.subject_id;" ;
 
                     super.pstmt = super.dbAccess.getConnectedPreparedStatement( selectQuery ) ;
 
@@ -221,28 +222,32 @@ public class SubjectQuerys extends CommenOperations {
             try{ 
                 String selectQuery ;
                 
-                selectQuery =   "SELECT  Subject.subject_id, subject.Subject_name , count( marks.marks ) FROM subject.marks " +
+                selectQuery =   "SELECT marks.student_id, student.student_name, subject.subject_id, subject.Subject_name , marks.marks FROM subject.marks " +
                                 "INNER JOIN subject.subject ON marks.subject_id = subject.subject_id " +
+                                "INNER JOIN student.student ON marks.student_id = student.student_id " +
                                 "JOIN ( 	SELECT marks.subject_id, avg( marks.marks) AS \"avg_mark\" " +
                                         "FROM subject.marks " +
                                         "group by marks.subject_id " +
                                     ") avgtable " +
                                 "ON marks.subject_id = avgtable.subject_id " +
                                 "WHERE marks.marks > avgtable.avg_mark " +
-                                "GROUP BY subject.subject_id " +
-                                "order by subject.subject_id ; " ;
+                                "order by marks.student_id ; " ;
                                 
             super.pstmt = super.dbAccess.getConnectedPreparedStatement( selectQuery ) ;
 
             this.result = super.pstmt.executeQuery() ;
 
             while( this.result.next() ) {
-                int subIDIndex = 1 ,
-                    subjectNameIndex = 2 ,
-                    countIndex = 3 ;
+                int studentIDIndex  = 1 ,
+                    studentnameIndex = 2 ,
+                    subIDIndex = 3 ,
+                    subjectNameIndex = 4 ,
+                    markIndex = 5 ;
+                marks.add( String.valueOf( result.getInt( studentIDIndex ) ) );
+                marks.add( result.getString( studentnameIndex )  );
                 marks.add( String.valueOf( result.getInt( subIDIndex ) ) );
                 marks.add( result.getString( subjectNameIndex )  );
-                marks.add(String.valueOf( result.getDouble( countIndex ) ) ) ; 
+                marks.add(String.valueOf( result.getDouble( markIndex ) ) ) ; 
             }
 
                     return marks ;

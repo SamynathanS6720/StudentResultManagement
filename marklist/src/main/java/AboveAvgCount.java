@@ -12,12 +12,14 @@ public class AboveAvgCount extends HttpServlet {
     public void service( HttpServletRequest req , HttpServletResponse res ) throws IOException, ServletException {
 
         // SubjectQuerys subjectFuntion1 = ( SubjectQuerys ) req.getAttribute( "subjectFuntion" );
-        String title = "Above " ;
+        String title = " Student Scored Above Avrage in each subject " ;
 
         req.setAttribute("title", title);
 
         List<String> headingList = new ArrayList<String>() {
             {  
+                add("Student ID");
+                add("Student Name");  
                 add("Subject ID");
                 add("Subject Name"); 
                 add("Marks");

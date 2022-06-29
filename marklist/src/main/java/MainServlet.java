@@ -21,10 +21,11 @@ public class MainServlet extends HttpServlet {
         if ("STAFF".equals(usertype)) {
             RequestDispatcher rd = req.getRequestDispatcher("STAFF");
             rd.forward( req, res);
-        } else if ("STUDENT".equals(usertype)) {
-            RequestDispatcher rd = req.getRequestDispatcher("STUDENT");
-            rd.forward( req, res);
-        }
+        } 
+        // else if ("STUDENT".equals(usertype)) {
+        //     RequestDispatcher rd = req.getRequestDispatcher("STUDENT");
+        //     rd.forward( req, res);
+        // }
     }
 }
 
