@@ -1,3 +1,5 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -129,22 +131,20 @@ title{
   color: white;
 }
 
-
-
-
-
 </style>
 </head>
+
 <body>
 <div  class= "header">
 <center ><h1>Staff</h1></center>
 <!-- <button >logout</button> -->
 </div>
 
+
 <div class="vertical-menu">
   <a href="#" class="active">Home</a>
   <div class="dropdown1">
-    <!-- <button class="dropbtn">Student Details</button> -->
+    <button class="dropbtn">Student Details</button>
     <div class="dropdown-content">
       <a href="#">Create Student Account</a>
       <a href="#">Remove Student </a>
@@ -168,5 +168,6 @@ title{
     </div>
   </div>
 </div>
+
 </body>
 </html>

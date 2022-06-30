@@ -274,8 +274,8 @@ public class SubjectQuerys extends CommenOperations {
                               "FROM subject.marks " + 
                               "JOIN subject.subject ON marks.subject_id = subject.subject_id " +
                               "JOIN student.student ON marks.student_id = student.student_id " +
-                              "WHERE ( marks.subject_Id , marks.marks ) = ANY ( " +
-                                    "select  marks.subject_id,  max(marks) AS \"toper\" "+
+                              "WHERE ( marks.subject_Id , marks.marks ) IN " +
+                                    "( select  marks.subject_id,  max(marks) AS \"toper\" "+
                                     "FROM subject.marks " +  
                                     "group by marks.subject_id ) "+
                                     "order by subject.subject_id; " ;

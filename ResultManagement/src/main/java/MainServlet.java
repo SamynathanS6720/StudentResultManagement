@@ -11,14 +11,12 @@ public class MainServlet extends HttpServlet {
 
     public void doPost( HttpServletRequest req , HttpServletResponse res ) throws IOException, ServletException {
          
-        String usertype = req.getParameter("usertype");
+        String username = req.getParameter("username");
 
-        HttpSession session = req.getSession();
-        session.setAttribute("user", usertype);
+       
+        // res.getWriter().println(username );
 
-        res.getWriter().println(usertype );
-
-        if ("STAFF".equals(usertype)) {
+        if ("STAFF".equals(username)) {
             RequestDispatcher rd = req.getRequestDispatcher("STAFF");
             rd.forward( req, res);
         } 
