@@ -4,11 +4,11 @@ import java.util.List;
 import java.sql.SQLException;
 import java.sql.ResultSet; 
 
-public class SubjectQuerys extends CommenOperations {
+public class SubjectsControlQuery extends InsertDeleteViewOperation {
 
     private ResultSet result = null ;
 
-    public SubjectQuerys(){
+    public SubjectsControlQuery(){
         super.dbAccess = DataBaseAccess.getAccessobject();
         super.dbAccess.openConnection() ;
     }

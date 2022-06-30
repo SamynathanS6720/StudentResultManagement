@@ -1,4 +1,3 @@
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,20 +8,20 @@ import javax.servlet.http.HttpServletResponse;
 // import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 
-public class ToperInEachSubject extends HttpServlet {
+public class StudentAboveAvgCountServlet extends HttpServlet {
     public void service( HttpServletRequest req , HttpServletResponse res ) throws IOException, ServletException {
 
         // SubjectQuerys subjectFuntion1 = ( SubjectQuerys ) req.getAttribute( "subjectFuntion" );
-        String title = "Topers In Each SubjectS" ;
+        String title = " Student Scored Above Avrage in each subject " ;
 
         req.setAttribute("title", title);
 
         List<String> headingList = new ArrayList<String>() {
-            {
+            {  
+                add("Student ID");
+                add("Student Name");  
                 add("Subject ID");
-                add("Subject Name");
-                add("Student ID");  
-                add("Student Name"); 
+                add("Subject Name"); 
                 add("Marks");
             }
         }; 
@@ -32,10 +31,11 @@ public class ToperInEachSubject extends HttpServlet {
 
         SubjectQuerys subjectFuntion = new SubjectQuerys() ;
 
-        List< String > subjectList = subjectFuntion.getTopScorereinEverySubjects();
+        List< String > subjectList = subjectFuntion.getStdCuntAboveAvgMarks();
                
         req.setAttribute("OverallAvgMarkList", subjectList);
 
         req.getRequestDispatcher("/TableTemplet.jsp").forward(req, res);
     }
 }
+

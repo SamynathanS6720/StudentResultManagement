@@ -8,19 +8,20 @@ import javax.servlet.http.HttpServletResponse;
 // import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 
-public class RankList extends HttpServlet {
+public class AboveAverageScorerListServlet extends HttpServlet {
     public void service( HttpServletRequest req , HttpServletResponse res ) throws IOException, ServletException {
 
         // SubjectQuerys subjectFuntion1 = ( SubjectQuerys ) req.getAttribute( "subjectFuntion" );
-        String title = "Rank List" ;
+        String title = "Above Average List" ;
 
         req.setAttribute("title", title);
 
         List<String> headingList = new ArrayList<String>() {
             {
-                add("Rank List");
-                add("Student ID");  
-                add("Student Name"); 
+                add("Student ID");
+                add("Student Name");  
+                add("Subject ID");
+                add("Subject Name"); 
                 add("Marks");
             }
         }; 
@@ -30,7 +31,7 @@ public class RankList extends HttpServlet {
 
         SubjectQuerys subjectFuntion = new SubjectQuerys() ;
 
-        List< String > subjectList = subjectFuntion.getStudentListInRankOrder();
+        List< String > subjectList = subjectFuntion.getaboveAvgScorerinEverySubjects();
                
         req.setAttribute("OverallAvgMarkList", subjectList);
 

@@ -4,7 +4,7 @@ import java.sql.Statement;
 import java.sql.PreparedStatement; 
 import java.sql.SQLException;
 
-public class LoginValidation implements Login {
+public class LoginValidationAndEnciption implements Login {
 
     public String loginValidation( String username , String enteredpassword  , String loginType ){
         DataBaseAccess dbAccess = DataBaseAccess.getAccessobject();

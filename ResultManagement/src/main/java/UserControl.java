@@ -1,7 +1,7 @@
 import java.sql.PreparedStatement; 
 import java.sql.SQLException;
 
-public class CreateUser {
+public class UserControl {
 
     public static boolean createLogin( Login loginAccess , String loginType, String userName , String password ){
         DataBaseAccess dbAccess = DataBaseAccess.getAccessobject();

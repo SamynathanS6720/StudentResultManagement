@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.util.List;
 import java.util.LinkedList; 
 
-public class CommenOperations  {
+public class InsertDeleteViewOperation  {
     
     protected DataBaseAccess dbAccess = null ;
     protected PreparedStatement pstmt = null ;

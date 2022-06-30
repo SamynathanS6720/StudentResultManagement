@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 
-public class StaffLogin extends HttpServlet {
+public class StaffLoginServlet extends HttpServlet {
     
-    private static Login loginAccess = new LoginValidation() ;
+    private static Login loginAccess = new LoginValidationAndEnciption() ;
 
     public void doPost( HttpServletRequest req , HttpServletResponse res ) throws IOException, ServletException {
         
@@ -23,11 +23,11 @@ public class StaffLogin extends HttpServlet {
         
         session.setAttribute("username", userName);
 
-        boolean passwordStatus = CreateUser.userLogin( loginAccess  , usertype ,  userName, password).equals("true") ;
+        boolean passwordStatus = UserControl.userLogin( loginAccess  , usertype ,  userName, password).equals("true") ;
         
         if( passwordStatus ){
-            CommenOperations operation = new CommenOperations() ;
-            SubjectQuerys subjectFuntion = new SubjectQuerys() ;
+            InsertDeleteViewOperationinDB operation = new InsertDeleteViewOperationinDB() ;
+            SubjectsControlQuery subjectFuntion = new SubjectsControlQuery() ;
 
             req.setAttribute( "subjectFuntion" ,  subjectFuntion);
             req.setAttribute("commenoperation", operation );

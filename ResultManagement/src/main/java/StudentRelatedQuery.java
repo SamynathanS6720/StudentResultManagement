@@ -5,13 +5,13 @@ import java.sql.SQLException;
 // import java.util.List ;
 // import java.util.LinkedList ;
 
-public class StudentQuery extends CommenOperations {
+public class StudentRelatedQuery extends InsertDeleteViewOperation {
 
     // private DataBaseAccess dBaseAccess = null ;
     // private PreparedStatement pstmt = null ;
     private ResultSet result = null ;
 
-    public StudentQuery(){
+    public StudentRelatedQuery(){
         super.dbAccess = DataBaseAccess.getAccessobject();
         super.dbAccess.openConnection() ;
     }

@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 // import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 
-public class OverallAvgMark extends HttpServlet {
+public class ToperInEachSubjectServlet extends HttpServlet {
     public void service( HttpServletRequest req , HttpServletResponse res ) throws IOException, ServletException {
 
         // SubjectQuerys subjectFuntion1 = ( SubjectQuerys ) req.getAttribute( "subjectFuntion" );
-        String title = "Overall Average Mark in Each Subject" ;
+        String title = "Topers In Each SubjectS" ;
 
         req.setAttribute("title", title);
 
@@ -21,6 +21,8 @@ public class OverallAvgMark extends HttpServlet {
             {
                 add("Subject ID");
                 add("Subject Name");
+                add("Student ID");  
+                add("Student Name"); 
                 add("Marks");
             }
         }; 
@@ -30,7 +32,7 @@ public class OverallAvgMark extends HttpServlet {
 
         SubjectQuerys subjectFuntion = new SubjectQuerys() ;
 
-        List< String > subjectList = subjectFuntion.getAvgMarksOfEverySubjects();
+        List< String > subjectList = subjectFuntion.getTopScorereinEverySubjects();
                
         req.setAttribute("OverallAvgMarkList", subjectList);
 
