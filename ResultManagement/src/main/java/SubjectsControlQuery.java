@@ -57,7 +57,7 @@ public class SubjectsControlQuery extends InsertDeleteViewOperation {
                     String selectQuery ; 
                     
                     selectQuery =  "select  student.student_id, student.student_name,  sum(marks) AS \"total\" " +
-                                    "FROM subject.marks,  student.student " +
+                                    "FROM subject.marks, student.student " +
                                     "WHERE student.student_id = marks.student_Id " +
                                     "group by student.student_id " +
                                     "order by total desc ;" ;

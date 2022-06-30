@@ -1,8 +1,12 @@
 
 import java.sql.Statement;
+
+import javax.naming.spi.DirStateFactory.Result;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DataBaseAccess{
@@ -95,10 +99,21 @@ public class DataBaseAccess{
         }
     }
 
+    public ResultSet exicuteQuery( String Query ){
+        ResultSet result ;
+        this.stmt = this.connection.createStatement();
+        result = this.stmt.executeUpdate( adminSchema );
+        return result ;
+    }
+
+    public void exicuteUpdate( String Query ){
+        this.stmt = this.connection.createStatement();
+        this.stmt.executeUpdate( adminSchema );
+    }
 
     @Override
     protected void finalize() throws Throwable {
-        System.out.println( "Connection " );  
+        System.out.println( " Connection " );  
         try{
             if( this.stmt == null ){
                 this.stmt.close();
