@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Offshore Analyst Form</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <style>
+ body {
+    background-color: white ;
+    font-family: Arial;  
+ }
+
+#comments{
+    font-size: small;
+}
+ 
+#header{
+    padding-left: 20%;
+    margin: 5px 5px;  
+    padding: 10px 10px;  
+    align-items: center; 
+    color: white;
+    text-align: center;
+    background-color: rgb(71, 185, 210);
+    border-radius: 3px;
+    position:-webkit-sticky;
+}
+
+input[type=text],input[type=date], select {
+  width: 65%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button{
+  width: 50%;
+  background-color: rgb(71, 185, 210);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:hover {
+  background-color:  rgb(71, 185, 210);
+}
+
+#format{
+    padding-left: 50%;
+    padding: 200px;
+}
+.box{
+    padding-left: 15%;
+    padding-right: 15%;
+    border: 5cm;
+}
+
+form{
+    background-color: azure;
+    padding-left: 15%;
+    padding-right: 5%;
+    border-color: black;
+    border: 50px;
+    font-size: medium;
+    position:-webkit-sticky;    
+}
+.input_label{
+    font-style: oblique;
+    font-size: medium;
+}
+
+p{
+    font-size: large;
+}
+</style>
+    <body>
+        <div class="box">
+            <h1 id="header">Offshore Analyst Form </h1>
+            <form type="submit">
+                <p id="comments">*Required</p>
+                <p id="comments">Request Info</p>
+                <div class="formart">
+                    <p class="input_label">1.Email*</p>
+                    <input type="text" placeholder="Enter your answer" name="email" required><br>
+                    <p class="input_label">2.Today's date* (dd/mm/yyyy)</p>
+                    <input type="date" placeholder="plese input date" name="date" required><br>
+                    <p class="input_label">3.Priority*</p>
+                    <select name="priority" placeholder="Select your annswer" required><br>
+                        <datalist name="priority" >
+                            <option selected="false" disabled="disabled" value="">Select Options</option>
+                            <option value="critical">1.Critical</option>
+                            <option value="high">2.High</option>
+                            <option value="medium">3.Medium</option>
+                            <option value="low">4.Low</option>
+                        </datalist>
+                    </select>
+                    <p class="input_label">4.What device are you accessing  your work through.*</p>
+                        <input type="radio" id="tablet" name="device" value="tablet" required>
+                        <label for="tablet">Tablet</label><br>
+                        <input type="radio" id="PC" name="device" value="PC">
+                        <label for="PC">PC</label><br>
+                        <input type="radio" id="Mac" name="device" value="Mac">
+                        <label for="Mac">Mac</label><br>
+                        <input type="radio" id="Phone-Apple" name="device" value="Phone-Apple">
+                        <label for="Phone-Apple">Phone-Apple</label><br>
+                        <input type="radio" id="Phone-Android" name="device" value="Phone-Android">
+                        <label for="Phone-Android">Phone-Android</label><br>
+                    <p class="input_label">5.Are you using the Desktop application or the Online clint?*</p>
+                        <input type="radio" id="Desktop_Application" name="application" value="Desktop_Application" required>
+                        <label for="Desktop_Application">Desktop_Application</label><br>
+                        <input type="radio" id="Online_clint" name="application" value="Online_clint">
+                        <label for="Online_clint">Online_clint</label><br>
+                        <input type="radio" id="both" name="device" value="both">
+                        <label for="both">Both</label><br>
+                    <p class="input_label">6.Issuse Category.*</p>
+                        <input type="radio" id="VD_connection" name="issuse" value="VD_connection" required>
+                        <label for="VD_connection">Virtual Desktop Connection issuse </label><br>
+                        <input type="radio" id="LinkedIn" name="issuse" value="LinkedIn">
+                        <label for="LinkedIn">LinkedIn</label><br>
+                        <input type="radio" id="SharePoint" name="issuse" value="SharePoint">
+                        <label for="SharePoint">SharePoint</label><br>
+                        <input type="radio" id="mail" name="issuse" value="Email/Outlook">
+                        <label for="mail">Email/Outlook</label><br>
+                        <input type="radio" id="teams" name="issuse" value="Teams">
+                        <label for="Teams">Teams</label><br>
+                    <p class="input_label">7.Issuse Title</p>
+                        <input type="text" placeholder="Enter your answer" name="issue_title" required><br>
+                    <p class="input_label">8.Issuse Description*</p>
+                        <input type="text" placeholder="Enter your answer" name="issue_discription" required><br>
+                        <br>
+                    <button type="submit" aria-placeholder="Submit">Submit</button>
+
+                    <br>
+                    <br>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
